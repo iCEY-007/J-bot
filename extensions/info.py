@@ -52,7 +52,7 @@ async def serverinfo(ctx: lightbulb.Context) -> None:
     
 @info_group.child
 @lightbulb.option(
-    "target", "The user to get information about.", hikari.User or int or str, required=False
+    "target", "The user to get information about.", hikari.User, required=False
 )
 @lightbulb.command("user", "Get info on a server member.", pass_options=True)
 @lightbulb.implements(lightbulb.PrefixSubCommand, lightbulb.SlashSubCommand)
