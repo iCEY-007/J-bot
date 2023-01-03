@@ -52,16 +52,20 @@ async def serverinfo(ctx: lightbulb.Context) -> None:
     
 @info_group.child
 @lightbulb.option(
-    "target", "The user to get information about.", hikari.User, required=False
+    "target", "The user to get information about.", hikari.User or int or str, required=False
 )
 @lightbulb.command("user", "Get info on a server member.", pass_options=True)
 @lightbulb.implements(lightbulb.PrefixSubCommand, lightbulb.SlashSubCommand)
-async def userinfo(ctx: lightbulb.Context, target: Optional[hikari.User] = None) -> None:
+async def userinfo(ctx: lightbulb.Context, target: Optional[hikari.User] or Optional[int] or Optional[str] = None) -> None:
     if not (guild := ctx.get_guild()):
         await ctx.respond("This command may only be used in servers.")
         return
 
     target = target or ctx.author
+    
+    if target == str:
+        target = lightbulb.utils.get(guild.get_members(), username=target)
+    
     target = ctx.bot.cache.get_member(guild, target)
 
     if not target:
