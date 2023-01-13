@@ -24,8 +24,6 @@ friends = re.compile(r".*(we('re| are)|are we) friends")
 mitski = re.compile(r".*mitski.*")
 useless = re.compile(r".*i('m| am) useless")
 
-"""Nobody nooooobody nooooooobody noooooooobdoy oooo nobody nOOOOBODY
-Carryyy mee oooOoOOOOoUUUuuuuuttt"""
 
 @inside_plugin.listener(hikari.GuildMessageCreateEvent)
 async def inside_jokes(event: hikari.GuildMessageCreateEvent) -> None:
