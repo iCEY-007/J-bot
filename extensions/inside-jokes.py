@@ -12,13 +12,13 @@ ancom = hikari.Emoji.parse("<:ancom:1057084080153436180>")
 
 # I just asked my friends what they wanted the bot to do here
 french = re.compile(r".*i love french.*")
-giveUp = re.compile(r".*give.+up.*")
+give_up = re.compile(r".*give.+up.*")
 hear = re.compile(r".*hear that\?.*")
 hate = re.compile(r".*i hate.+")
 convo = re.compile(r".*talking back to me\?.*")
 makima = re.compile(r".*makima.*")
-godBless = re.compile(r".*god bless you.*")
-areGod = re.compile(r".*are.+god")
+god_bless = re.compile(r".*god bless you.*")
+are_god = re.compile(r".*are.+god")
 thank = re.compile(r".*thank.*")
 friends = re.compile(r".*(we('re| are)|are we) friends")
 mitski = re.compile(r".*mitski.*")
@@ -43,7 +43,7 @@ async def inside_jokes(event: hikari.GuildMessageCreateEvent) -> None:
             await author.edit(communication_disabled_until=timeout)
         except hikari.ForbiddenError:
             await author.send("Apparently I can't time you out. You still deserve to be for liking french though.")
-    if giveUp.match(content):
+    if give_up.match(content):
         await event.message.respond("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
     if hear.match(content):
         await event.message.respond("I hear **YOU**. And I wish I didn't.")
@@ -53,9 +53,9 @@ async def inside_jokes(event: hikari.GuildMessageCreateEvent) -> None:
         await event.message.respond("Yes that's how a coversation works.")
     if makima.match(content):
         await event.message.respond("Makima is always watching...")
-    if godBless.match(content):
+    if god_bless.match(content):
         await event.message.respond("God hasn't been blessing me lately :rolling_eyes:")
-    if areGod.match(content):
+    if are_god.match(content):
         await event.message.respond(f"No gods, no masters! {ancom}")
     if thank.match(content):
         await event.message.respond(f"I don't know why you're thanking me, my dear {author.mention}, but you're welcome to be part of my perfection :relieved:")
@@ -74,3 +74,6 @@ async def inside_jokes(event: hikari.GuildMessageCreateEvent) -> None:
 
 def load(bot: lightbulb.BotApp) -> None:
     bot.add_plugin(inside_plugin)
+    
+def unload(bot: lightbulb.BotApp) -> None:
+    bot.remove_plugin(inside_plugin)
