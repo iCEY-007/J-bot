@@ -3,7 +3,7 @@ import lightbulb
 echo_plugin = lightbulb.Plugin("misc")
 
 @echo_plugin.command()
-@lightbulb.option("message", "Message to echo.", str, required=True)
+@lightbulb.option("message", "Message to echo.", str, required=True, modifier=lightbulb.OptionModifier.CONSUME_REST)
 @lightbulb.command("echo", "Echoes a message.", pass_options=True)
 @lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
 async def echo(ctx: lightbulb.Context, message: str) -> None:
